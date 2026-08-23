@@ -1,4 +1,5 @@
 (function () {
+    document.documentElement.classList.add('js');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -10,6 +11,7 @@
         hamburger.classList.toggle('active', open);
         hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
         hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        document.body.classList.toggle('nav-open', open);
     }
 
     if (hamburger && navMenu) {
@@ -20,6 +22,17 @@
 
     navLinks.forEach((link) => {
         link.addEventListener('click', () => setMenuOpen(false));
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!navMenu || !hamburger) return;
+        if (!navMenu.classList.contains('active')) return;
+        if (navMenu.contains(e.target) || hamburger.contains(e.target)) return;
+        setMenuOpen(false);
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) setMenuOpen(false);
     });
 
     function sectionIdFromHref(href) {

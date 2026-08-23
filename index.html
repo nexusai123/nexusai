@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusAI - Enterprise DevOps, AI & SRE Solutions</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -17,7 +18,7 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="product.html" class="nav-link">Products</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#approach" class="nav-link">Approach</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -29,6 +30,9 @@
                 <span></span>
                 <span></span>
             </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </nav>
 
@@ -37,81 +41,21 @@
         <div class="hero-content">
             <h1>NexusAI</h1>
             <p class="subtitle">Enterprise DevOps, AI & SRE Solutions</p>
-            <p class="description">Intelligent automation, predictive analytics, and production excellence</p>
-            <a href="#products" class="cta-button">Explore Our Products</a>
+            <p class="description">Intelligent automation, predictive analytics, and production excellence — now with advanced AI analysis and memory insights.</p>
+            <div class="hero-ctas">
+                <a href="product.html" class="cta-button">Explore Products</a>
+                <a href="#contact" class="cta-button secondary">Request Demo</a>
+            </div>
         </div>
         <div class="hero-background"></div>
     </section>
 
-    <!-- Products Section - Featured -->
-    <section id="products" class="products-featured">
+    <!-- Products Teaser -->
+    <section id="products-teaser" class="products-teaser">
         <div class="container">
-            <h2 class="section-title">Our Flagship Product</h2>
-            
-            <div class="flagship-product">
-                <div class="product-visual">
-                    <div class="product-icon-large">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                </div>
-                <div class="product-content">
-                    <h2>AI Thread Dump Analyzer</h2>
-                    <p class="product-tagline">Upload Thread Dump → AI Analysis → Root Cause → Recommended Fix</p>
-                    
-                    <div class="product-flow">
-                        <div class="flow-step">
-                            <div class="flow-icon"><i class="fas fa-upload"></i></div>
-                            <div class="flow-label">Upload</div>
-                        </div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="flow-step">
-                            <div class="flow-icon"><i class="fas fa-brain"></i></div>
-                            <div class="flow-label">AI Analysis</div>
-                        </div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="flow-step">
-                            <div class="flow-icon"><i class="fas fa-crosshairs"></i></div>
-                            <div class="flow-label">Root Cause</div>
-                        </div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="flow-step">
-                            <div class="flow-icon"><i class="fas fa-wrench"></i></div>
-                            <div class="flow-label">Fix</div>
-                        </div>
-                    </div>
-
-                    <h3>Key Capabilities</h3>
-                    <ul class="product-features">
-                        <li><i class="fas fa-check-circle"></i> <strong>Automated Thread Analysis</strong> - Analyzes hundreds/thousands of threads in seconds</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>AI-Powered Root Cause Analysis (RCA)</strong> - Machine learning identifies actual performance issues</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Deadlock Detection</strong> - Automatically identifies thread deadlocks and lock contention</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Memory Leak Detection</strong> - Pinpoints potential memory leaks from thread states</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>CPU Hotspot Identification</strong> - Finds threads consuming excessive CPU</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>I/O Blocking Analysis</strong> - Detects threads blocked on I/O operations</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Contextual Recommendations</strong> - Provides actionable fix recommendations</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Interactive Dashboard</strong> - Visual representation of thread states and issues</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Historical Comparison</strong> - Compare thread dumps over time</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Custom RAG Integration</strong> - Trainable AI model with your company's best practices</li>
-                    </ul>
-
-                    <div class="tech-stack">
-                        <h4>Technology Stack</h4>
-                        <div class="tech-badges">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">AI/LLM</span>
-                            <span class="tech-badge">RAG</span>
-                            <span class="tech-badge">Java Analysis</span>
-                            <span class="tech-badge">React Dashboard</span>
-                            <span class="tech-badge">PostgreSQL</span>
-                        </div>
-                    </div>
-
-                    <div class="product-cta">
-                        <a href="#contact" class="cta-button">Request Demo</a>
-                        <a href="#" class="cta-button secondary">View Documentation</a>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title">Products</h2>
+            <p class="lead">Explore NexusAI's product portfolio including our flagship <strong>AI Thread Dump Analyzer</strong> and our <strong>Memory Analyzer</strong>. For full product specifications, demos, and documentation, visit the Products page.</p>
+            <p><a href="product.html" class="cta-button">View Product Details</a></p>
         </div>
     </section>
 
@@ -706,6 +650,78 @@
         </div>
     </section>
 
+    <!-- Embedded Contact Modal (hidden by default) -->
+    <div id="contact-modal" class="contact-modal-embedded" style="display:none;">
+        <div class="contact-modal-backdrop"></div>
+        <div class="contact-modal-dialog">
+            <button class="contact-modal-close" aria-label="Close contact">×</button>
+            <div class="contact-modal-body">
+                <div class="container">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <div class="contact-wrapper">
+                        <div class="contact-info">
+                            <h3>Contact Information</h3>
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>info@nexusai.com</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>080 79603321</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Address</h4>
+                                    <p>+09, Skyline Estate<br>Horamavu, Bangalore</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Support Hours</h4>
+                                    <p>24/7 Available</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" placeholder="Company Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="company" placeholder="Company Name">
+                            </div>
+                            <div class="form-group">
+                                <select required>
+                                    <option value="">Select a Service</option>
+                                    <option value="thread-dump">AI Thread Dump Analyzer</option>
+                                    <option value="devops">DevOps Services</option>
+                                    <option value="sre">SRE Consulting</option>
+                                    <option value="support">Production Support</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -722,7 +738,7 @@
                 <div class="footer-section">
                     <h4>Products</h4>
                     <ul>
-                        <li><a href="#products">AI Thread Dump Analyzer</a></li>
+                        <li><a href="product.html">AI Thread Dump Analyzer</a></li>
                         <li><a href="#services">DevOps Services</a></li>
                         <li><a href="#services">SRE Solutions</a></li>
                         <li><a href="#platforms">Mobile Apps</a></li>

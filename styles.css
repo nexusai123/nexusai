@@ -2035,6 +2035,40 @@ body.dark .svc-btn {
     padding: 10px 12px;
     border-radius: 8px;
 }
+.form-success {
+    background: rgba(16, 185, 129, 0.22);
+    border: 1px solid #34d399;
+    color: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+.send-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.send-row .submit-btn,
+.send-row .wa-btn {
+    flex: 1;
+    min-width: 160px;
+    min-height: 48px;
+    text-align: center;
+}
+.submit-btn:disabled { opacity: 0.7; cursor: wait; }
+.wa-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25d366;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.28);
+}
+.wa-btn:hover { color: #fff; filter: brightness(1.05); }
 
 .demo-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
 .file-status { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
@@ -2231,6 +2265,7 @@ img, svg, video { max-width: 100%; height: auto; }
     .home-cta h2 { font-size: 1.35rem; }
     .home-cta-inner, .home-cta-actions { flex-direction: column; align-items: stretch; }
     .home-cta .cta-button, .home-cta .cta-button.secondary { width: 100%; text-align: center; }
+    .send-row { flex-direction: column; }
     .ghost-link { text-align: center; display: block; padding: 12px; }
     .cta-button, .submit-btn, .run-btn, .upload-btn, .app-link {
         min-height: 44px;

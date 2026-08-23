@@ -6,7 +6,7 @@
     <title>Contact — Request a demo | NexusAI</title>
     <meta name="description" content="Request a NexusAI demo. Email info@nexusai.com or call 080 7960 3321.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -108,9 +108,15 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required placeholder="What you need, timeline, and any constraints."></textarea>
                     </div>
-                    <p class="form-hint">Submit opens your email client with this message addressed to us. Nothing is stored in the browser.</p>
+                    <p class="form-hint">Send stays on this page. We get the message at info@nexusai.com. Prefer chat? Use WhatsApp.</p>
                     <p class="form-error" id="form-error" hidden></p>
-                    <button type="submit" class="submit-btn">Open email to send</button>
+                    <p class="form-success" id="form-success" hidden>Message sent. We’ll reply within one business day.</p>
+                    <div class="send-row">
+                        <button type="submit" class="submit-btn" id="send-btn">Send message</button>
+                        <a class="wa-btn" id="wa-btn" href="https://wa.me/918079603321" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -125,6 +131,6 @@
         </div>
     </footer>
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=6"></script>
 </body>
 </html>

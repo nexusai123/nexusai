@@ -95,49 +95,103 @@
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         const errorEl = document.getElementById('form-error');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = Object.fromEntries(new FormData(contactForm));
-            const name = (data.name || '').trim();
-            const email = (data.email || '').trim();
-            const message = (data.message || '').trim();
-            const company = (data.company || '').trim();
-            const service = data.service || '';
+        const successEl = document.getElementById('form-success');
+        const sendBtn = document.getElementById('send-btn');
+        const waBtn = document.getElementById('wa-btn');
+        const FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@nexusai.com';
 
+        function setError(msg) {
+            if (successEl) successEl.hidden = true;
             if (errorEl) {
-                errorEl.hidden = true;
-                errorEl.textContent = '';
+                errorEl.textContent = msg;
+                errorEl.hidden = !msg;
+            } else if (msg) {
+                showToast(msg);
             }
+        }
 
-            if (!name || !email || !message || !service) {
-                const msg = 'Please fill in name, work email, what you need, and a short message.';
-                if (errorEl) {
-                    errorEl.textContent = msg;
-                    errorEl.hidden = false;
-                } else {
-                    showToast(msg);
-                }
+        function readFields() {
+            const data = Object.fromEntries(new FormData(contactForm));
+            return {
+                name: (data.name || '').trim(),
+                email: (data.email || '').trim(),
+                message: (data.message || '').trim(),
+                company: (data.company || '').trim(),
+                service: data.service || ''
+            };
+        }
+
+        function waHref(fields) {
+            const text = [
+                'Hello NexusAI,',
+                fields.name ? 'Name: ' + fields.name : '',
+                fields.company ? 'Company: ' + fields.company : '',
+                fields.service ? 'Need: ' + fields.service : '',
+                fields.message ? fields.message : ''
+            ].filter(Boolean).join('\n');
+            return 'https://wa.me/918079603321?text=' + encodeURIComponent(text);
+        }
+
+        if (waBtn) {
+            waBtn.addEventListener('click', (e) => {
+                const fields = readFields();
+                waBtn.href = waHref(fields);
+            });
+        }
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fields = readFields();
+            setError('');
+
+            if (!fields.name || !fields.email || !fields.message || !fields.service) {
+                setError('Please fill in name, work email, what you need, and a short message.');
                 return;
             }
 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                const msg = 'Please enter a valid work email.';
-                if (errorEl) {
-                    errorEl.textContent = msg;
-                    errorEl.hidden = false;
-                }
+            if (!emailRegex.test(fields.email)) {
+                setError('Please enter a valid work email.');
                 return;
             }
 
-            const subject = encodeURIComponent('NexusAI demo request — ' + service);
-            const body = encodeURIComponent(
-                'Name: ' + name + '\nEmail: ' + email + '\nCompany: ' + (company || '—') +
-                '\nInterest: ' + service + '\n\n' + message
-            );
-            window.location.href = 'mailto:info@nexusai.com?subject=' + subject + '&body=' + body;
-            showToast('Your email app should open with the message ready to send.');
-            contactForm.reset();
+            if (sendBtn) {
+                sendBtn.disabled = true;
+                sendBtn.textContent = 'Sending…';
+            }
+
+            try {
+                const res = await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: fields.name,
+                        email: fields.email,
+                        company: fields.company || '—',
+                        service: fields.service,
+                        message: fields.message,
+                        _subject: 'NexusAI enquiry — ' + fields.service
+                    })
+                });
+                const payload = await res.json().catch(() => ({}));
+                if (!res.ok || payload.success === 'false' || payload.success === false) {
+                    throw new Error(payload.message || 'Send failed');
+                }
+                contactForm.reset();
+                if (successEl) successEl.hidden = false;
+                showToast('Message sent.');
+            } catch (err) {
+                setError('Could not send from the browser. Opening WhatsApp instead.');
+                window.open(waHref(fields), '_blank', 'noopener');
+            } finally {
+                if (sendBtn) {
+                    sendBtn.disabled = false;
+                    sendBtn.textContent = 'Send message';
+                }
+            }
         });
     }
 

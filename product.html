@@ -3,140 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - NexusAI</title>
+    <title>Products — Thread Dump &amp; Memory Analyzer | NexusAI</title>
+    <meta name="description" content="Try a preview of NexusAI Thread Dump Analyzer, then request a demo of heap and deadlock analysis for your JVM.">
+    <meta name="theme-color" content="#0066cc">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="navbar" aria-label="Primary">
         <div class="container">
-            <div class="nav-brand">
-                <i class="fas fa-network-wired"></i>
+            <a class="nav-brand" href="index.html">
+                <span class="brand-mark" aria-hidden="true">
+                    <i class="fas fa-brain"></i>
+                </span>
                 <span>NexusAI</span>
-            </div>
-            <ul class="nav-menu">
+                <span class="ai-chip">AI</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="product.html" class="nav-link active">Products</a></li>
-                <li><a href="index.html#services" class="nav-link">Services</a></li>
-                <li><a href="index.html#approach" class="nav-link">Approach</a></li>
-                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="index.html#platforms" class="nav-link">Platforms</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <a href="contact.html" class="nav-cta">Request demo</a>
+                <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Product Details Page -->
-    <section class="products-featured">
-        <div class="container">
-            <h2 class="section-title">Our Flagship Product</h2>
-            
-            <div class="flagship-product">
-                <div class="product-visual">
-                    <div class="product-icon-large">
-                        <i class="fas fa-flask"></i>
+    <main id="main">
+    <section class="hero hero-product" id="thread-dump">
+        <div class="ai-symbols" aria-hidden="true">
+            <i class="fas fa-brain s1"></i>
+            <i class="fas fa-microchip s2"></i>
+            <i class="fas fa-robot s3"></i>
+            <i class="fas fa-diagram-project s4"></i>
+            <i class="fas fa-bolt s5"></i>
+            <i class="fas fa-circle-nodes s6"></i>
+        </div>
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow"><i class="fas fa-brain" aria-hidden="true"></i> Flagship product · AI</p>
+                <h1>Find the <span class="hero-emphasis">thread</span> that’s killing production</h1>
+                <p class="description">Paste a Java thread dump. In minutes you see the deadlock, the CPU loop, or the leak suspect — and the next change to try.</p>
+                <ul class="hero-proof">
+                    <li><strong>4h → 15m</strong> typical RCA</li>
+                    <li>Preview needs no account</li>
+                    <li>Dumps can stay in your VPC</li>
+                </ul>
+                <div class="hero-ctas">
+                    <a href="#ai-features" class="cta-button">Try the preview</a>
+                    <a href="contact.html" class="cta-button secondary">Request a demo</a>
+                </div>
+                <ol class="hero-steps" aria-label="How it works">
+                    <li><span><i class="fas fa-upload"></i></span> Upload dump</li>
+                    <li><span><i class="fas fa-brain"></i></span> AI analysis</li>
+                    <li><span><i class="fas fa-crosshairs"></i></span> Root cause</li>
+                    <li><span><i class="fas fa-wrench"></i></span> Recommended fix</li>
+                </ol>
+            </div>
+            <aside class="hero-panel" aria-label="Example analysis report">
+                <div class="report-window">
+                    <div class="report-chrome">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="report-title"><i class="fas fa-brain"></i> AI · thread-dump · prod-api-3</span>
+                    </div>
+                    <div class="report-banner">
+                        <strong>Critical</strong> Deadlock on OrderService — 2 threads waiting on each other
+                    </div>
+                    <div class="report-row">
+                        <span class="sev high">High</span>
+                        <div>
+                            <strong>CPU spin in worker pool</strong>
+                            <p>Add park/backoff; workers are RUNNABLE in a tight loop.</p>
+                        </div>
+                    </div>
+                    <div class="report-row">
+                        <span class="sev med">Medium</span>
+                        <div>
+                            <strong>Cache retaining 1.2M keys</strong>
+                            <p>Cap size + TTL; confirm with a dump after deploy.</p>
+                        </div>
+                    </div>
+                    <div class="report-fix">
+                        <span>Next step</span>
+                        Reduce lock scope in <code>reserveInventory</code>. Avoid nested synchronized on the same monitor pair.
                     </div>
                 </div>
-                <div class="product-content">
-                    <h2>AI Thread Dump Analyzer</h2>
-                    <p class="product-tagline">Upload Thread Dump → AI Analysis → Root Cause → Recommended Fix</p>
-                    
-                    <div class="product-flow">
-                        <div class="flow-step">
-                            <div class="flow-icon"><i class="fas fa-upload"></i></div>
-                            <div class="flow-label">Upload</div>
-                        </div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="flow-step">
-                            <div class="flow-icon"><i class="fas fa-brain"></i></div>
-                            <div class="flow-label">AI Analysis</div>
-                        </div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="flow-step">
-                            <div class="flow-icon"><i class="fas fa-crosshairs"></i></div>
-                            <div class="flow-label">Root Cause</div>
-                        </div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="flow-step">
-                            <div class="flow-icon"><i class="fas fa-wrench"></i></div>
-                            <div class="flow-label">Fix</div>
-                        </div>
-                    </div>
+            </aside>
+        </div>
+    </section>
 
-                    <h3>Key Capabilities</h3>
+    <section class="products-featured">
+        <div class="container">
+            <h2 class="section-title">What it finds</h2>
+            <div class="product-content product-content-wide">
                     <ul class="product-features">
-                        <li><i class="fas fa-check-circle"></i> <strong>Automated Thread Analysis</strong> - Analyzes hundreds/thousands of threads in seconds</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>AI-Powered Root Cause Analysis (RCA)</strong> - Machine learning identifies actual performance issues</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Deadlock Detection</strong> - Automatically identifies thread deadlocks and lock contention</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Memory Leak Detection</strong> - Pinpoints potential memory leaks from thread states</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>CPU Hotspot Identification</strong> - Finds threads consuming excessive CPU</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>I/O Blocking Analysis</strong> - Detects threads blocked on I/O operations</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Contextual Recommendations</strong> - Provides actionable fix recommendations</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Interactive Dashboard</strong> - Visual representation of thread states and issues</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Historical Comparison</strong> - Compare thread dumps over time</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Custom RAG Integration</strong> - Trainable AI model with your company's best practices</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Thread analysis</strong> — large dumps in seconds, grouped by state and lock</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Root cause</strong> — ranked issues with confidence, not a raw thread list</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Deadlocks</strong> — cycles and lock contention called out first</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>CPU hotspots</strong> — RUNNABLE loops that burn cores</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Blocking I/O</strong> — threads stuck on network, disk, or JDBC</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>History</strong> — compare dumps from before and after a deploy</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Your runbooks</strong> — optional RAG so advice matches how you already operate</li>
                     </ul>
 
                     <div class="tech-stack">
-                        <h4>Technology Stack</h4>
+                        <h4>Stack</h4>
                         <div class="tech-badges">
                             <span class="tech-badge">Python</span>
-                            <span class="tech-badge">AI/LLM</span>
+                            <span class="tech-badge">LLM</span>
                             <span class="tech-badge">RAG</span>
-                            <span class="tech-badge">Java Analysis</span>
-                            <span class="tech-badge">React Dashboard</span>
+                            <span class="tech-badge">JVM</span>
+                            <span class="tech-badge">React</span>
                             <span class="tech-badge">PostgreSQL</span>
                         </div>
                     </div>
 
                     <div class="product-cta">
-                        <a href="index.html#contact" class="cta-button">Request Demo</a>
-                        <a href="#" class="cta-button secondary">View Documentation</a>
+                        <a href="contact.html" class="cta-button">Request a live demo</a>
+                        <a href="#ai-features" class="cta-button secondary">Try the preview</a>
                     </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Features & Demo -->
     <section id="ai-features" class="ai-features">
         <div class="container">
-            <h2 class="section-title">AI Features</h2>
-            <p style="text-align:center; max-width:900px; margin:0 auto 30px; color:#445;">Advanced AI-driven capabilities powering faster incident detection, explainability, and automatic remediation suggestions. Try the demo below to experience a simulated analysis.</p>
+            <h2 class="section-title">Interactive preview</h2>
+            <p class="lead">This preview uses sample findings so you can see the report layout. Your dumps are not uploaded or stored. A live demo uses your files in your environment.</p>
 
             <div class="ai-grid">
                 <div class="ai-demo-card">
                     <div class="ai-demo-header">
-                        <h3>Live Analysis Demo</h3>
-                        <div class="badge-pill">AI Preview</div>
+                        <h3><i class="fas fa-brain" aria-hidden="true"></i> Sample analysis</h3>
+                        <div class="badge-pill">Preview</div>
                     </div>
 
                     <div class="upload-area">
-                        <p class="ai-demo-sub">Upload a thread dump or heap snapshot to run an AI analysis (demo uses a simulated result).</p>
-                        <label class="upload-btn" for="demo-file">Choose File</label>
+                        <p class="ai-demo-sub">Optional: pick a <code>.txt</code>, <code>.log</code>, or <code>.hprof</code> name so the preview can tailor sample results. The file stays on your device.</p>
+                        <label class="upload-btn" for="demo-file">Choose file</label>
                         <input id="demo-file" type="file" accept=".txt,.log,.hprof" />
+                        <p class="file-status" id="file-status">No file selected — we’ll use a typical deadlock scenario.</p>
                     </div>
 
-                    <div style="display:flex; gap:12px; margin-bottom:6px;">
-                        <button id="run-analysis" class="run-btn">Run AI Analysis</button>
-                        <button id="quick-scan" class="upload-btn" style="background:linear-gradient(90deg,#ffaa00,#ff6b35);">Quick Scan</button>
+                    <div class="demo-actions">
+                        <button id="run-analysis" class="run-btn" type="button">Run full preview</button>
+                        <button id="quick-scan" class="upload-btn" type="button">Quick scan</button>
                     </div>
 
                     <div class="progress-bar" id="analysis-progress" aria-hidden="true"><span></span></div>
+                    <p class="sr-only" id="analysis-status" aria-live="polite"></p>
 
-                    <div class="analysis-panel" id="analysis-results" style="display:none;">
-                        <h4 style="margin:0 0 10px 0;">Analysis Summary</h4>
-                        <div id="results-list">
-                            <!-- results injected by JS -->
-                        </div>
-                        <div style="margin-top:12px; display:flex; gap:8px;">
-                            <a href="#contact" class="cta-button">Request Detailed Report</a>
-                            <a href="#" class="cta-button secondary">Export Snapshot</a>
+                    <div class="analysis-panel" id="analysis-results" hidden>
+                        <h4>Preview summary</h4>
+                        <div id="results-list"></div>
+                        <div class="product-cta" style="margin-top:12px;">
+                            <a href="contact.html" class="cta-button">Get this on a real dump</a>
                         </div>
                     </div>
                 </div>
@@ -144,50 +181,45 @@
                 <div>
                     <div class="ai-cards">
                         <div class="ai-card">
-                            <i class="fas fa-bolt"></i>
+                            <i class="fas fa-bolt" aria-hidden="true"></i>
                             <div>
-                                <h4>Anomaly Detection</h4>
-                                <p>Automatically detects unusual thread behavior, CPU spikes, and memory growth patterns.</p>
+                                <h4>Anomaly detection</h4>
+                                <p>Unusual thread states, CPU spikes, and memory growth called out automatically.</p>
                             </div>
                         </div>
-
                         <div class="ai-card">
-                            <i class="fas fa-brain"></i>
+                            <i class="fas fa-brain" aria-hidden="true"></i>
                             <div>
                                 <h4>Explainability</h4>
-                                <p>Human-readable explanations for AI findings and confidence scores for each suggested fix.</p>
+                                <p>Plain-language reasons and confidence so an engineer can accept or reject a finding.</p>
                             </div>
                         </div>
-
                         <div class="ai-card">
-                            <i class="fas fa-database"></i>
+                            <i class="fas fa-database" aria-hidden="true"></i>
                             <div>
                                 <h4>Adaptive RAG</h4>
-                                <p>Integrate your runbooks and knowledge base to generate contextual recommendations.</p>
+                                <p>Point at your runbooks so suggested fixes match how you already recover.</p>
                             </div>
                         </div>
-
                         <div class="ai-card">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-lock" aria-hidden="true"></i>
                             <div>
-                                <h4>Private Models</h4>
-                                <p>Run AI on-prem or in your VPC to keep sensitive data private.</p>
+                                <h4>Private models</h4>
+                                <p>Run in your VPC or on-prem when dumps cannot leave the building.</p>
                             </div>
                         </div>
-
                         <div class="ai-card">
-                            <i class="fas fa-code-branch"></i>
+                            <i class="fas fa-code-branch" aria-hidden="true"></i>
                             <div>
-                                <h4>Model Versioning</h4>
-                                <p>Track model versions, data lineage, and performance metrics for audits.</p>
+                                <h4>Model versioning</h4>
+                                <p>Know which model produced a report when audit asks later.</p>
                             </div>
                         </div>
-
                         <div class="ai-card">
-                            <i class="fas fa-robot"></i>
+                            <i class="fas fa-robot" aria-hidden="true"></i>
                             <div>
-                                <h4>Auto-Triage</h4>
-                                <p>Prioritize incidents and auto-assign runbooks based on severity and impact.</p>
+                                <h4>Auto-triage</h4>
+                                <p>Severity and impact used to order work, not a flat list of 4,000 threads.</p>
                             </div>
                         </div>
                     </div>
@@ -196,93 +228,82 @@
         </div>
     </section>
 
-    <!-- Additional Product: Memory Analyzer -->
-    <section class="products-featured memory-analyzer">
+    <section id="memory" class="products-featured memory-analyzer">
         <div class="container">
             <h2 class="section-title">Memory Analyzer</h2>
 
             <div class="flagship-product">
                 <div class="product-visual">
                     <div class="product-icon-large">
-                        <i class="fas fa-memory"></i>
+                        <i class="fas fa-memory" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="product-content">
-                    <h2>Memory Analyzer</h2>
-                    <p class="product-tagline">Heap Snapshot → AI Analysis → Leak Root Cause → Remediation Guidance</p>
+                    <h2>Heap snapshots that lead to a leak hypothesis</h2>
+                    <p class="product-tagline">Snapshot → analysis → retained objects → remediation</p>
 
-                    <h3>Key Capabilities</h3>
+                    <h3>What it finds</h3>
                     <ul class="product-features">
-                        <li><i class="fas fa-check-circle"></i> <strong>Heap Snapshot Analysis</strong> - Inspect object graphs and allocation sites</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Memory Leak Detection</strong> - Identify retained objects and leaking code paths</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Allocation Profiling</strong> - Track hot allocation paths and growth trends</li>
-                        <li><i class="fas fa-check-circle"></i> </i> <strong>GC Tuning Recommendations</strong> - Suggestions for garbage collector configuration</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Native & JVM Memory Insights</strong> - Correlate native allocations with managed heap</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Snapshot Diffing</strong> - Compare memory snapshots over time</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Contextual Fixes</strong> - AI-powered remediation steps tailored to codebase patterns</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Interactive Visualization</strong> - Object retention graphs and flame charts</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Heap graphs</strong> — object retained sets and allocation sites</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Leak suspects</strong> — growing structures and missing eviction</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Allocation hot paths</strong> — where new objects keep appearing</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>GC tuning</strong> — collector settings that match what the heap is doing</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Native + JVM</strong> — correlate off-heap growth with the managed heap</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Snapshot diff</strong> — before vs after a suspected leak window</li>
                     </ul>
 
                     <div class="tech-stack">
-                        <h4>Technology Stack</h4>
+                        <h4>Stack</h4>
                         <div class="tech-badges">
-                            <span class="tech-badge">Java Heap</span>
-                            <span class="tech-badge">Native Memory</span>
-                            <span class="tech-badge">Python Analysis</span>
+                            <span class="tech-badge">Java heap</span>
+                            <span class="tech-badge">Native memory</span>
+                            <span class="tech-badge">Python</span>
                             <span class="tech-badge">LLM</span>
-                            <span class="tech-badge">React Dashboard</span>
+                            <span class="tech-badge">React</span>
                         </div>
                     </div>
 
                     <div class="product-cta">
-                        <a href="index.html#contact" class="cta-button">Request Demo</a>
-                        <a href="#" class="cta-button secondary">View Docs</a>
+                        <a href="contact.html" class="cta-button">Request a demo</a>
+                        <a href="#ai-features" class="cta-button secondary">See preview layout</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>NexusAI</h4>
-                    <p>Enterprise DevOps, AI & SRE solutions for production excellence</p>
+                    <p>Thread dump and memory analysis for production Java teams.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Products</h4>
+                    <h4>On this page</h4>
                     <ul>
-                        <li><a href="product.html">AI Thread Dump Analyzer</a></li>
-                        <li><a href="index.html#services">DevOps Services</a></li>
-                        <li><a href="index.html#services">SRE Solutions</a></li>
-                        <li><a href="index.html#platforms">Mobile Apps</a></li>
+                        <li><a href="#thread-dump">Thread Dump Analyzer</a></li>
+                        <li><a href="#ai-features">Interactive preview</a></li>
+                        <li><a href="#memory">Memory Analyzer</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">API Reference</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contact.html">Request demo</a></li>
+                        <li><a href="mailto:info@nexusai.com">info@nexusai.com</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 NexusAI. All rights reserved.</p>
+                <p>&copy; <span class="year">2026</span> NexusAI. Bengaluru.</p>
             </div>
         </div>
     </footer>
 
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
     <script src="script.js"></script>
 </body>
 </html>

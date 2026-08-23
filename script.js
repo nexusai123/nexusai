@@ -1,276 +1,245 @@
-// Mobile Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
+(function () {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
-
-// Close menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-});
-
-// Update active nav link on scroll
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Form Submission Handler
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-        
-        // Simple validation
-        if (!data.name || !data.email || !data.message) {
-            alert('Please fill in all required fields');
-            return;
-        }
-
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-
-        // Success message
-        alert('Thank you for your message! Our team will get back to you soon.');
-        contactForm.reset();
-    });
-}
-
-// Smooth scroll for navigation
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Add animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe all animated elements
-document.querySelectorAll('.service-card, .benefit, .team-member, .project-card, .platform-item, .mobile-app').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// Get current year for copyright
-const yearElement = document.querySelector('.footer-bottom p');
-if (yearElement) {
-    const year = new Date().getFullYear();
-    yearElement.textContent = `© ${year} NexusAI. All rights reserved. | Trusted by 50+ Fortune 500 Companies`;
-}
-
-// Add event listeners for project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.borderTop = '4px solid var(--secondary-color)';
-    });
-    card.addEventListener('mouseleave', function() {
-        this.style.borderTop = 'none';
-    });
-});
-
-// Log success message
-console.log('NexusAI Website Loaded Successfully!');
-
-// -- AI Demo Simulation --
-const runBtn = document.getElementById('run-analysis');
-const quickScan = document.getElementById('quick-scan');
-const progressBar = document.querySelector('#analysis-progress > span');
-const progressWrap = document.getElementById('analysis-progress');
-const resultsPanel = document.getElementById('analysis-results');
-const resultsList = document.getElementById('results-list');
-const demoFile = document.getElementById('demo-file');
-
-function simulateAnalysis(mode = 'full') {
-    if (!progressBar || !progressWrap) return;
-    resultsPanel.style.display = 'none';
-    progressWrap.setAttribute('aria-hidden', 'false');
-    progressBar.style.width = '0%';
-    let progress = 0;
-    const step = mode === 'quick' ? 20 : 8;
-    const interval = setInterval(() => {
-        progress = Math.min(100, progress + Math.floor(Math.random() * step) + (mode === 'quick' ? 10 : 4));
-        progressBar.style.width = progress + '%';
-        if (progress >= 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                showFakeResults(mode);
-            }, 400);
-        }
-    }, mode === 'quick' ? 250 : 400);
-}
-
-function showFakeResults(mode) {
-    if (!resultsList || !resultsPanel) return;
-    const sample = [
-        { severity: 'Critical', title: 'Deadlock between Thread-A & Thread-B', fix: 'Inspect synchronized blocks and reduce lock scope' },
-        { severity: 'High', title: 'High CPU loop in worker pool', fix: 'Add rate-limiting and review loop conditions' },
-        { severity: 'Medium', title: 'Large retained set in cache', fix: 'Add eviction policy and limit cache size' },
-        { severity: 'Info', title: 'Blocking I/O on main thread', fix: 'Move I/O to dedicated thread pool' }
-    ];
-
-    // tailor sample for memory snapshots
-    if (demoFile && demoFile.files && demoFile.files[0] && demoFile.files[0].name.endsWith('.hprof')) {
-        sample.splice(0, 2, { severity: 'High', title: 'Native memory leak detected', fix: 'Check JNI allocations and release handles' });
+    function setMenuOpen(open) {
+        if (!navMenu || !hamburger) return;
+        navMenu.classList.toggle('active', open);
+        hamburger.classList.toggle('active', open);
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
 
-    // If quick mode, show only top 2
-    const results = mode === 'quick' ? sample.slice(0, 2) : sample;
-    resultsList.innerHTML = '';
-    results.forEach(r => {
-        const div = document.createElement('div');
-        div.className = 'result-item';
-        div.innerHTML = `<div class="result-severity">${r.severity}</div><div><strong>${r.title}</strong><div style="color:#666;margin-top:6px;">${r.fix}</div></div>`;
-        resultsList.appendChild(div);
-    });
-
-    resultsPanel.style.display = 'block';
-    progressWrap.setAttribute('aria-hidden', 'true');
-}
-
-if (runBtn) runBtn.addEventListener('click', () => simulateAnalysis('full'));
-if (quickScan) quickScan.addEventListener('click', () => simulateAnalysis('quick'));
-
-// Hook the custom file label to trigger file selection
-const uploadLabel = document.querySelector('.upload-btn[for="demo-file"]');
-if (uploadLabel && demoFile) {
-    uploadLabel.addEventListener('click', () => demoFile.click());
-    demoFile.addEventListener('change', () => {
-        if (demoFile.files && demoFile.files[0]) {
-            uploadLabel.textContent = demoFile.files[0].name;
-        }
-    });
-}
-
-// -- Theme toggle handling --
-const themeToggle = document.getElementById('theme-toggle');
-function applyTheme(t) {
-    if (t === 'dark') document.body.classList.add('dark'); else document.body.classList.remove('dark');
-}
-// load saved preference
-const savedTheme = localStorage.getItem('nexusai_theme');
-if (savedTheme) applyTheme(savedTheme);
-// default to system preference if not set
-else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        const isDark = document.body.classList.toggle('dark');
-        localStorage.setItem('nexusai_theme', isDark ? 'dark' : 'light');
-        // update icon
-        const icon = themeToggle.querySelector('i');
-        if (icon) icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-    });
-    // set initial icon
-    const iconInit = themeToggle.querySelector('i');
-    if (iconInit) iconInit.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
-}
-
-// -- Contact Modal behavior (opens modal and hides navbar while open) --
-const contactLinks = document.querySelectorAll('a[href="#contact"]');
-const navbar = document.querySelector('.navbar');
-
-function openContactModal() {
-    const modal = document.getElementById('contact-modal');
-    if (!modal) return;
-    // show embedded modal
-    modal.style.display = 'flex';
-    // small timeout to allow CSS transition
-    setTimeout(() => modal.classList.add('show'), 10);
-    if (navbar) navbar.style.display = 'none';
-    // wire close handlers (idempotent)
-    const closeBtn = modal.querySelector('.contact-modal-close');
-    const backdrop = modal.querySelector('.contact-modal-backdrop');
-    if (closeBtn && !closeBtn._bound) { closeBtn.addEventListener('click', closeContactModal); closeBtn._bound = true; }
-    if (backdrop && !backdrop._bound) { backdrop.addEventListener('click', closeContactModal); backdrop._bound = true; }
-
-    // handle ESC
-    if (!modal._escHandler) {
-        modal._escHandler = (e) => { if (e.key === 'Escape') closeContactModal(); };
-        document.addEventListener('keydown', modal._escHandler);
-    }
-
-    // ensure modal form submits as expected
-    const modalForm = modal.querySelector('.contact-form');
-    if (modalForm && !modalForm._bound) {
-        modalForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! Our team will get back to you soon.');
-            modalForm.reset();
-            closeContactModal();
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            setMenuOpen(!navMenu.classList.contains('active'));
         });
-        modalForm._bound = true;
     }
-}
 
-function closeContactModal() {
-    const modal = document.getElementById('contact-modal');
-    if (!modal) return;
-    modal.classList.remove('show');
-    setTimeout(() => { modal.style.display = 'none'; }, 220);
-    if (navbar) navbar.style.display = '';
-    if (modal._escHandler) { document.removeEventListener('keydown', modal._escHandler); modal._escHandler = null; }
-}
-
-// Intercept same-page contact links to open modal
-contactLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        openContactModal();
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => setMenuOpen(false));
     });
-});
 
-// If page loads with #contact in hash, open modal
-if (window.location.hash === '#contact') {
-    setTimeout(() => openContactModal(), 150);
-}
+    function sectionIdFromHref(href) {
+        if (!href || href === '#') return '';
+        if (href.includes('.html')) return '';
+        if (href.startsWith('#')) return href.slice(1);
+        return '';
+    }
+
+    const pageSections = [...document.querySelectorAll('section[id]')];
+    if (pageSections.length) {
+        window.addEventListener('scroll', () => {
+            let current = '';
+            pageSections.forEach((section) => {
+                if (window.scrollY >= section.offsetTop - 160) {
+                    current = section.id;
+                }
+            });
+            navLinks.forEach((link) => {
+                const id = sectionIdFromHref(link.getAttribute('href'));
+                if (!id) return;
+                link.classList.toggle('active', id === current);
+            });
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+            const href = anchor.getAttribute('href');
+            if (!href || href === '#') {
+                e.preventDefault();
+                return;
+            }
+            const target = document.querySelector(href);
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+            history.replaceState(null, '', href);
+        });
+    });
+
+    const yearNodes = document.querySelectorAll('.year');
+    const year = String(new Date().getFullYear());
+    yearNodes.forEach((el) => { el.textContent = year; });
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.hidden = false;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+            toast.hidden = true;
+        }, 4000);
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const errorEl = document.getElementById('form-error');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(contactForm));
+            const name = (data.name || '').trim();
+            const email = (data.email || '').trim();
+            const message = (data.message || '').trim();
+            const company = (data.company || '').trim();
+            const service = data.service || '';
+
+            if (errorEl) {
+                errorEl.hidden = true;
+                errorEl.textContent = '';
+            }
+
+            if (!name || !email || !message || !service) {
+                const msg = 'Please fill in name, work email, what you need, and a short message.';
+                if (errorEl) {
+                    errorEl.textContent = msg;
+                    errorEl.hidden = false;
+                } else {
+                    showToast(msg);
+                }
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                const msg = 'Please enter a valid work email.';
+                if (errorEl) {
+                    errorEl.textContent = msg;
+                    errorEl.hidden = false;
+                }
+                return;
+            }
+
+            const subject = encodeURIComponent('NexusAI demo request — ' + service);
+            const body = encodeURIComponent(
+                'Name: ' + name + '\nEmail: ' + email + '\nCompany: ' + (company || '—') +
+                '\nInterest: ' + service + '\n\n' + message
+            );
+            window.location.href = 'mailto:info@nexusai.com?subject=' + subject + '&body=' + body;
+            showToast('Your email app should open with the message ready to send.');
+            contactForm.reset();
+        });
+    }
+
+    if (!reduceMotion) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+
+        document.querySelectorAll(
+            '.service-card, .benefit, .team-member, .project-card, .platform-item, .mobile-app, .home-product-card, .approach-card'
+        ).forEach((el) => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
+    }
+
+    const runBtn = document.getElementById('run-analysis');
+    const quickScan = document.getElementById('quick-scan');
+    const progressBar = document.querySelector('#analysis-progress > span');
+    const progressWrap = document.getElementById('analysis-progress');
+    const resultsPanel = document.getElementById('analysis-results');
+    const resultsList = document.getElementById('results-list');
+    const demoFile = document.getElementById('demo-file');
+    const fileStatus = document.getElementById('file-status');
+    const analysisStatus = document.getElementById('analysis-status');
+    let analysisTimer;
+
+    function simulateAnalysis(mode) {
+        if (!progressBar || !progressWrap || !resultsPanel) return;
+        resultsPanel.hidden = true;
+        progressWrap.setAttribute('aria-hidden', 'false');
+        progressBar.style.width = '0%';
+        if (analysisStatus) analysisStatus.textContent = 'Preview running.';
+        let progress = 0;
+        const step = mode === 'quick' ? 22 : 10;
+        clearInterval(analysisTimer);
+        analysisTimer = setInterval(() => {
+            progress = Math.min(100, progress + Math.floor(Math.random() * step) + (mode === 'quick' ? 12 : 5));
+            progressBar.style.width = progress + '%';
+            if (progress >= 100) {
+                clearInterval(analysisTimer);
+                window.setTimeout(() => showFakeResults(mode), reduceMotion ? 0 : 280);
+            }
+        }, reduceMotion ? 40 : (mode === 'quick' ? 180 : 320));
+    }
+
+    function showFakeResults(mode) {
+        if (!resultsList || !resultsPanel) return;
+        const isHeap = demoFile && demoFile.files[0] && /\.hprof$/i.test(demoFile.files[0].name);
+        const dump = [
+            { severity: 'Critical', title: 'Deadlock between pool-1-thread-3 and http-nio-8080', fix: 'Reduce lock scope around OrderService#reserveInventory and avoid nested synchronized on the same pair of monitors.' },
+            { severity: 'High', title: 'RUNNABLE spin in worker pool', fix: 'The worker loop has no backoff. Add a wait/notify or bounded queue so idle workers park.' },
+            { severity: 'Medium', title: 'Cache retaining 1.2M entries', fix: 'Set a max size and TTL on the local cache; confirm eviction in a second dump after deploy.' },
+            { severity: 'Info', title: 'JDBC wait on main request thread', fix: 'Move the query off the servlet thread or raise the pool and add a timeout.' }
+        ];
+        const heap = [
+            { severity: 'High', title: 'Retained HashMap in SessionStore', fix: 'Sessions are never removed on logout. Add explicit remove and a size cap.' },
+            { severity: 'High', title: 'Byte[] buffers held by Netty', fix: 'Check for missing release() on pooled buffers in the outbound handler.' },
+            { severity: 'Medium', title: 'Soft references not clearing under load', fix: 'Heap is too large for the current pause goal; review G1 region size and live-data size.' },
+            { severity: 'Info', title: 'Classloader metadata growth', fix: 'Redeploys without unloading. Confirm undeploy of old webapps.' }
+        ];
+        const sample = isHeap ? heap : dump;
+        const results = mode === 'quick' ? sample.slice(0, 2) : sample;
+        resultsList.innerHTML = '';
+        results.forEach((r) => {
+            const div = document.createElement('div');
+            div.className = 'result-item';
+            div.innerHTML =
+                '<div class="result-severity">' + r.severity + '</div>' +
+                '<div><strong>' + r.title + '</strong><div class="result-fix">' + r.fix + '</div></div>';
+            resultsList.appendChild(div);
+        });
+        resultsPanel.hidden = false;
+        progressWrap.setAttribute('aria-hidden', 'true');
+        if (analysisStatus) {
+            analysisStatus.textContent = 'Preview complete. ' + results.length + ' sample findings.';
+        }
+        resultsPanel.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+    }
+
+    if (runBtn) runBtn.addEventListener('click', () => simulateAnalysis('full'));
+    if (quickScan) quickScan.addEventListener('click', () => simulateAnalysis('quick'));
+
+    if (demoFile) {
+        demoFile.addEventListener('change', () => {
+            if (demoFile.files && demoFile.files[0] && fileStatus) {
+                fileStatus.textContent = 'Using filename “' + demoFile.files[0].name + '” for this preview only. The file is not uploaded.';
+            }
+        });
+    }
+
+    const themeToggle = document.getElementById('theme-toggle');
+    function applyTheme(t) {
+        document.body.classList.toggle('dark', t === 'dark');
+        if (themeToggle) {
+            const icon = themeToggle.querySelector('i');
+            const dark = t === 'dark';
+            if (icon) icon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
+            themeToggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+        }
+    }
+    const savedTheme = localStorage.getItem('nexusai_theme');
+    if (savedTheme) applyTheme(savedTheme);
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+    else applyTheme('light');
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const next = document.body.classList.contains('dark') ? 'light' : 'dark';
+            applyTheme(next);
+            localStorage.setItem('nexusai_theme', next);
+        });
+    }
+})();

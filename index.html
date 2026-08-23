@@ -3,781 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusAI - Enterprise DevOps, AI & SRE Solutions</title>
+    <title>NexusAI — DevOps, AI &amp; SRE for production teams</title>
+    <meta name="description" content="NexusAI delivers DevOps, SRE, and AI products for production systems. Based in Bengaluru.">
+    <meta name="theme-color" content="#0066cc">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="navbar" aria-label="Primary">
         <div class="container">
-            <div class="nav-brand">
-                <i class="fas fa-network-wired"></i>
+            <a class="nav-brand" href="index.html">
+                <span class="brand-mark" aria-hidden="true"><i class="fas fa-brain"></i></span>
                 <span>NexusAI</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
+                <span class="ai-chip">AI</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
                 <li><a href="product.html" class="nav-link">Products</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#approach" class="nav-link">Approach</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#platforms" class="nav-link">Platforms</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <a href="contact.html" class="nav-cta">Request demo</a>
+                <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-moon"></i>
-            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>NexusAI</h1>
-            <p class="subtitle">Enterprise DevOps, AI & SRE Solutions</p>
-            <p class="description">Intelligent automation, predictive analytics, and production excellence — now with advanced AI analysis and memory insights.</p>
-            <div class="hero-ctas">
-                <a href="product.html" class="cta-button">Explore Products</a>
-                <a href="#contact" class="cta-button secondary">Request Demo</a>
-            </div>
+    <main id="main">
+    <section id="home" class="hero hero-home">
+        <div class="ai-symbols" aria-hidden="true">
+            <i class="fas fa-brain s1"></i>
+            <i class="fas fa-microchip s2"></i>
+            <i class="fas fa-robot s3"></i>
+            <i class="fas fa-diagram-project s4"></i>
+            <i class="fas fa-bolt s5"></i>
+            <i class="fas fa-circle-nodes s6"></i>
         </div>
-        <div class="hero-background"></div>
-    </section>
-
-    <!-- Products Teaser -->
-    <section id="products-teaser" class="products-teaser">
-        <div class="container">
-            <h2 class="section-title">Products</h2>
-            <p class="lead">Explore NexusAI's product portfolio including our flagship <strong>AI Thread Dump Analyzer</strong> and our <strong>Memory Analyzer</strong>. For full product specifications, demos, and documentation, visit the Products page.</p>
-            <p><a href="product.html" class="cta-button">View Product Details</a></p>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            
-            <div class="services-grid">
-                <!-- DevOps Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>DevOps Excellence</h3>
-                    <p>Streamline your infrastructure with cutting-edge DevOps practices. Automated deployments, continuous integration, and infrastructure-as-code solutions.</p>
-                    <ul class="features">
-                        <li>CI/CD Pipeline Automation</li>
-                        <li>Container Orchestration (Kubernetes)</li>
-                        <li>Infrastructure as Code</li>
-                        <li>Multi-Cloud Integration</li>
-                    </ul>
-                </div>
-
-                <!-- AI Integration Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>AI & Automation</h3>
-                    <p>Harness the power of artificial intelligence to optimize your operations. Machine learning models for predictive analytics and intelligent automation.</p>
-                    <ul class="features">
-                        <li>Predictive Analytics</li>
-                        <li>ML Model Development</li>
-                        <li>Intelligent Automation</li>
-                        <li>Performance Anomaly Detection</li>
-                    </ul>
-                </div>
-
-                <!-- SRE Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>Site Reliability Engineering</h3>
-                    <p>Ensure maximum uptime and performance with SRE best practices. Error budgets, blameless post-mortems, and reliability metrics.</p>
-                    <ul class="features">
-                        <li>System Reliability Design</li>
-                        <li>Monitoring & Alerting</li>
-                        <li>Incident Management</li>
-                        <li>Performance Optimization</li>
-                    </ul>
-                </div>
-
-                <!-- Production Support Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Production Support</h3>
-                    <p>24/7 dedicated support ensuring your systems run smoothly. Expert troubleshooting, rapid issue resolution, and proactive maintenance.</p>
-                    <ul class="features">
-                        <li>24/7 Technical Support</li>
-                        <li>Issue Resolution & RCA</li>
-                        <li>System Health Checks</li>
-                        <li>On-Call Services</li>
-                    </ul>
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow"><i class="fas fa-brain" aria-hidden="true"></i> Bengaluru · DevOps · AI · SRE</p>
+                <h1>The partner for systems that have to stay up</h1>
+                <p class="description">We ship the platform and the AI tools your engineers use in an incident — not a slide deck that never leaves the workshop.</p>
+                <div class="hero-ctas">
+                    <a href="product.html" class="cta-button">See products</a>
+                    <a href="contact.html" class="cta-button secondary">Talk to us</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Development & Requirement Handling -->
-    <section id="approach" class="approach">
-        <div class="container">
-            <h2 class="section-title">Development & Business Requirement Handling</h2>
-            <div class="approach-grid">
-                <div class="approach-card">
-                    <div class="approach-icon"><i class="fas fa-comments"></i></div>
-                    <h3>Business Requirement Discovery</h3>
-                    <p>We begin every engagement with structured discovery workshops to capture business goals, pain points, constraints, stakeholders, SLAs, and key operational metrics.</p>
-                    <ul>
-                        <li>Stakeholder interviews and process mapping</li>
-                        <li>Business KPI and SLA alignment</li>
-                        <li>Gap analysis and problem prioritization</li>
-                        <li>Requirement traceability from business to technical design</li>
-                    </ul>
-                </div>
-
-                <div class="approach-card">
-                    <div class="approach-icon"><i class="fas fa-file-alt"></i></div>
-                    <h3>Requirements Documentation</h3>
-                    <p>Business and technical requirements are documented clearly so development, QA, support, and product teams have a single point of truth.</p>
-                    <ul>
-                        <li>Functional and non-functional requirements</li>
-                        <li>Use cases, acceptance criteria, and edge cases</li>
-                        <li>Risk, dependency, and compliance mapping</li>
-                        <li>Solution scope and milestone planning</li>
-                    </ul>
-                </div>
-
-                <div class="approach-card">
-                    <div class="approach-icon"><i class="fas fa-code"></i></div>
-                    <h3>Agile Development Lifecycle</h3>
-                    <p>We follow a delivery model designed for speed, transparency, and production readiness across DevOps, AI, and platform engineering workloads.</p>
-                    <ul>
-                        <li>Backlog creation and sprint planning</li>
-                        <li>Architecture and design validation</li>
-                        <li>Incremental builds with frequent review cycles</li>
-                        <li>Dev, test, and production readiness checks</li>
-                    </ul>
-                </div>
-
-                <div class="approach-card">
-                    <div class="approach-icon"><i class="fas fa-users-cog"></i></div>
-                    <h3>Change & Stakeholder Management</h3>
-                    <p>Every solution is governed with cross-functional communication, controlled change management, and clear ownership for business adoption.</p>
-                    <ul>
-                        <li>Business owner sign-off at every milestone</li>
-                        <li>Issue tracking and escalation management</li>
-                        <li>Release readiness reviews and rollback planning</li>
-                        <li>Post-go-live support and knowledge transfer</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recent Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Recent Projects & Case Studies</h2>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>High-Frequency Trading Platform Migration</h3>
-                        <span class="project-tag">DevOps + SRE</span>
-                    </div>
-                    <p class="project-description">Migrated legacy monolithic Java trading platform to microservices architecture on Kubernetes. Implemented zero-downtime deployment strategy.</p>
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <span class="metric-value">40%</span>
-                            <span class="metric-label">Latency Reduction</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">99.99%</span>
-                            <span class="metric-label">Uptime SLA</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">6 months</span>
-                            <span class="metric-label">Timeline</span>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-label">Kubernetes</span>
-                        <span class="tech-label">Java</span>
-                        <span class="tech-label">Docker</span>
-                        <span class="tech-label">AWS</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>AI-Powered Performance Optimization</h3>
-                        <span class="project-tag">AI + Production Support</span>
-                    </div>
-                    <p class="project-description">Deployed AI Thread Dump Analyzer for Fortune 500 financial services company. Reduced MTTR for performance issues from 4 hours to 15 minutes.</p>
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <span class="metric-value">93%</span>
-                            <span class="metric-label">Issue Detection Speed</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">15m</span>
-                            <span class="metric-label">MTTR Reduction</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">12M+</span>
-                            <span class="metric-label">Threads Analyzed</span>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-label">Python</span>
-                        <span class="tech-label">LLM</span>
-                        <span class="tech-label">React</span>
-                        <span class="tech-label">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Enterprise Monitoring Stack Implementation</h3>
-                        <span class="project-tag">SRE + DevOps</span>
-                    </div>
-                    <p class="project-description">Built comprehensive monitoring and observability platform using Prometheus, Grafana, ELK Stack. Implemented intelligent alerting with ML anomaly detection.</p>
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <span class="metric-value">10K+</span>
-                            <span class="metric-label">Metrics/sec</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">60%</span>
-                            <span class="metric-label">Alert Noise Reduction</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">30+ Teams</span>
-                            <span class="metric-label">Users Trained</span>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-label">Prometheus</span>
-                        <span class="tech-label">Grafana</span>
-                        <span class="tech-label">ELK</span>
-                        <span class="tech-label">ML Algorithms</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>CI/CD Pipeline Transformation</h3>
-                        <span class="project-tag">DevOps</span>
-                    </div>
-                    <p class="project-description">Designed and implemented enterprise-grade CI/CD platform supporting 500+ microservices. Automated testing, security scanning, and deployment orchestration.</p>
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <span class="metric-value">10x</span>
-                            <span class="metric-label">Deployment Speed</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">4000+</span>
-                            <span class="metric-label">Deployments/month</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">50+ Teams</span>
-                            <span class="metric-label">Supported</span>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-label">GitLab CI</span>
-                        <span class="tech-label">Terraform</span>
-                        <span class="tech-label">GitOps</span>
-                        <span class="tech-label">SonarQube</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Thread Dump Analysis Automation</h3>
-                        <span class="project-tag">AI + Java + SRE</span>
-                    </div>
-                    <p class="project-description">Automated analysis of 50K+ Java thread dumps using AI. Reduced manual analysis time by 95% and increased RCA accuracy to 98%.</p>
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <span class="metric-value">95%</span>
-                            <span class="metric-label">Time Saved</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">98%</span>
-                            <span class="metric-label">RCA Accuracy</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">50K+</span>
-                            <span class="metric-label">Analyzed Dumps</span>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-label">Java</span>
-                        <span class="tech-label">Python</span>
-                        <span class="tech-label">AI/ML</span>
-                        <span class="tech-label">RAG</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Multi-Cloud FinTech Infrastructure</h3>
-                        <span class="project-tag">DevOps + SRE</span>
-                    </div>
-                    <p class="project-description">Architected resilient multi-cloud infrastructure across AWS, Azure, and GCP for regulated financial services. Implemented disaster recovery and compliance automation.</p>
-                    <div class="project-metrics">
-                        <div class="metric">
-                            <span class="metric-value">3 Clouds</span>
-                            <span class="metric-label">Integrated</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">15m</span>
-                            <span class="metric-label">RTO/RPO</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">100%</span>
-                            <span class="metric-label">Compliance Audit</span>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-label">AWS</span>
-                        <span class="tech-label">Azure</span>
-                        <span class="tech-label">GCP</span>
-                        <span class="tech-label">Terraform</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Supported Platforms Section -->
-    <section id="platforms" class="platforms">
-        <div class="container">
-            <h2 class="section-title">Supported Platforms & Mobile Apps</h2>
-            
-            <div class="platforms-wrapper">
-                <div class="platforms-section">
-                    <h3>Enterprise Platforms</h3>
-                    <div class="platforms-grid">
-                        <div class="platform-item">
-                            <i class="fab fa-java"></i>
-                            <h4>Java</h4>
-                            <p>Comprehensive JVM analysis including thread dumps, heap analysis, and garbage collection optimization</p>
-                        </div>
-                        <div class="platform-item">
-                            <i class="fab fa-python"></i>
-                            <h4>Python</h4>
-                            <p>Application performance monitoring, profiling, and AI-driven optimization</p>
-                        </div>
-                        <div class="platform-item">
-                            <i class="fab fa-node"></i>
-                            <h4>Node.js</h4>
-                            <p>V8 profiling, memory leak detection, and async performance analysis</p>
-                        </div>
-                        <div class="platform-item">
-                            <i class="fab fa-golang"></i>
-                            <h4>Go</h4>
-                            <p>Goroutine analysis, pprof integration, and concurrency debugging</p>
-                        </div>
-                        <div class="platform-item">
-                            <i class="fab fa-docker"></i>
-                            <h4>Kubernetes</h4>
-                            <p>Container performance monitoring, pod analysis, and cluster optimization</p>
-                        </div>
-                        <div class="platform-item">
-                            <i class="fas fa-cloud"></i>
-                            <h4>Multi-Cloud</h4>
-                            <p>AWS, Azure, GCP, and on-premises infrastructure support</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="platforms-section">
-                    <h3>Mobile Apps</h3>
-                    <div class="mobile-apps-grid">
-                        <div class="mobile-app">
-                            <div class="app-icon ios">
-                                <i class="fab fa-apple"></i>
-                            </div>
-                            <h4>NexusAI iOS</h4>
-                            <p class="app-version">v2.1.0</p>
-                            <p>Real-time system monitoring, alert notifications, and thread dump viewer on the go</p>
-                            <div class="app-features">
-                                <span class="feature">Push Notifications</span>
-                                <span class="feature">Live Dashboard</span>
-                                <span class="feature">RCA Reports</span>
-                                <span class="feature">Offline Mode</span>
-                            </div>
-                            <a href="#" class="app-link">Download on App Store</a>
-                        </div>
-
-                        <div class="mobile-app">
-                            <div class="app-icon android">
-                                <i class="fab fa-android"></i>
-                            </div>
-                            <h4>NexusAI Android</h4>
-                            <p class="app-version">v2.1.0</p>
-                            <p>Full-featured mobile companion for Android devices with biometric authentication</p>
-                            <div class="app-features">
-                                <span class="feature">Biometric Auth</span>
-                                <span class="feature">Real-time Alerts</span>
-                                <span class="feature">Quick Analysis</span>
-                                <span class="feature">Sync Across Devices</span>
-                            </div>
-                            <a href="#" class="app-link">Download on Play Store</a>
-                        </div>
-
-                        <div class="mobile-app">
-                            <div class="app-icon web">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <h4>NexusAI Web Portal</h4>
-                            <p class="app-version">v3.2.1</p>
-                            <p>Comprehensive web dashboard with advanced analytics and team collaboration features</p>
-                            <div class="app-features">
-                                <span class="feature">Role-Based Access</span>
-                                <span class="feature">Advanced Analytics</span>
-                                <span class="feature">Team Collaboration</span>
-                                <span class="feature">API Access</span>
-                            </div>
-                            <a href="#" class="app-link">Launch Web Portal</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why NexusAI Section -->
-    <section class="why-nexusai">
-        <div class="container">
-            <h2 class="section-title">Why Choose NexusAI?</h2>
-            <div class="benefits-grid">
-                <div class="benefit">
-                    <i class="fas fa-check-circle"></i>
-                    <h4>Integrated Solutions</h4>
-                    <p>Seamless integration of DevOps, AI, and SRE under one platform</p>
-                </div>
-                <div class="benefit">
-                    <i class="fas fa-check-circle"></i>
-                    <h4>Production Proven</h4>
-                    <p>Deployed in 50+ Fortune 500 companies worldwide</p>
-                </div>
-                <div class="benefit">
-                    <i class="fas fa-check-circle"></i>
-                    <h4>AI-Powered Insights</h4>
-                    <p>Machine learning algorithms provide actionable recommendations</p>
-                </div>
-                <div class="benefit">
-                    <i class="fas fa-check-circle"></i>
-                    <h4>24/7 Enterprise Support</h4>
-                    <p>Dedicated SRE teams available round-the-clock</p>
-                </div>
-                <div class="benefit">
-                    <i class="fas fa-check-circle"></i>
-                    <h4>Scalable Architecture</h4>
-                    <p>Handles millions of events and terabytes of data daily</p>
-                </div>
-                <div class="benefit">
-                    <i class="fas fa-check-circle"></i>
-                    <h4>Cost Optimization</h4>
-                    <p>Reduce infrastructure costs by 40% with AI automation</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team">
-        <div class="container">
-            <h2 class="section-title">Our Expert Team</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <h3>Team Lead</h3>
-                    <p class="role">DevOps Lead</p>
-                    <p class="bio">Expert in CI/CD, containerization, and cloud infrastructure. Passionate about automation and scalability.</p>
-                    <div class="member-social">
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <h3>AI Specialist</h3>
-                    <p class="role">AI & ML Specialist</p>
-                    <p class="bio">Specializes in machine learning models, predictive analytics, and intelligent automation solutions.</p>
-                    <div class="member-social">
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <h3>Reliability Engineer</h3>
-                    <p class="role">SRE & Reliability Engineer</p>
-                    <p class="bio">Focuses on system reliability, monitoring solutions, and incident management best practices.</p>
-                    <div class="member-social">
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <h3>Support Director</h3>
-                    <p class="role">Production Support Director</p>
-                    <p class="bio">Leads enterprise support operations with focus on customer satisfaction and rapid issue resolution.</p>
-                    <div class="member-social">
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Approach Section -->
-    <section id="approach" class="approach">
-        <div class="container">
-            <h2 class="section-title">Our Approach</h2>
-            <div class="approach-content">
-                <p>At NexusAI, we follow a systematic and collaborative approach to understand and address your business requirements. Our development workflow is designed to ensure transparency, flexibility, and continuous improvement.</p>
-                
-                <h3>Business Requirement Handling</h3>
-                <p>We engage with your stakeholders to gather and analyze requirements, ensuring we have a comprehensive understanding of your needs. Our team conducts workshops, interviews, and surveys to elicit requirements and gain insights into your business processes.</p>
-                
-                <h3>Development Workflow</h3>
-                <ol>
-                    <li><strong>Discovery:</strong> Initial meetings to understand your business, challenges, and goals.</li>
-                    <li><strong>Requirements Gathering:</strong> Collaborating with your team to collect and document detailed requirements.</li>
-                    <li><strong>Design:</strong> Creating solution architectures and design specifications for approval.</li>
-                    <li><strong>Implementation:</strong> Agile development sprints to build and test the solution incrementally.</li>
-                    <li><strong>Review & Feedback:</strong> Regular demos and feedback sessions to ensure alignment with your expectations.</li>
-                    <li><strong>Deployment:</strong> Releasing the solution to production with comprehensive testing and validation.</li>
-                    <li><strong>Support & Optimization:</strong> Ongoing support, monitoring, and optimization to ensure sustained success.</li>
-                </ol>
-
-                <p>Our approach is centered around delivering value to your organization through effective collaboration, innovative solutions, and continuous improvement. We leverage the latest technologies and best practices to ensure your success in the digital landscape.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
+            <aside class="hero-panel" aria-label="Choose a path">
+                <div class="home-offer">
+                    <a class="offer-card" href="product.html">
+                        <i class="fas fa-brain" aria-hidden="true"></i>
                         <div>
-                            <h4>Email</h4>
-                            <p>info@nexusai.com</p>
+                            <h3>Products</h3>
+                            <p>Thread dump and memory analyzers for Java incidents.</p>
                         </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a class="offer-card" href="services.html">
+                        <i class="fas fa-cogs" aria-hidden="true"></i>
                         <div>
-                            <h4>Phone</h4>
-                            <p>080 79603321</p>
+                            <h3>Services</h3>
+                            <p>DevOps, SRE, hardware procurement, and production support.</p>
                         </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                    </a>
+                    <a class="offer-card" href="contact.html">
+                        <i class="fas fa-comments" aria-hidden="true"></i>
                         <div>
-                            <h4>Address</h4>
-                            <p>+09, Skyline Estate<br>Horamavu, Bangalore</p>
+                            <h3>Request a demo</h3>
+                            <p>One business-day reply. Bengaluru hours.</p>
                         </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>Support Hours</h4>
-                            <p>24/7 Available</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
+            </aside>
+        </div>
+    </section>
 
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Company Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Company Name">
-                    </div>
-                    <div class="form-group">
-                        <select required>
-                            <option value="">Select a Service</option>
-                            <option value="thread-dump">AI Thread Dump Analyzer</option>
-                            <option value="devops">DevOps Services</option>
-                            <option value="sre">SRE Consulting</option>
-                            <option value="support">Production Support</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+    <section class="products-teaser">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">Products</h2>
+                    <p class="lead">Start here if you have a dump or a leak. Full specs and a preview live on the product page.</p>
+                </div>
+                <a class="text-link" href="product.html">All product details</a>
+            </div>
+            <div class="home-product-grid">
+                <a class="home-product-card" href="product.html#thread-dump">
+                    <span class="ai-badge"><i class="fas fa-brain" aria-hidden="true"></i> AI</span>
+                    <i class="fas fa-flask" aria-hidden="true"></i>
+                    <h3>AI Thread Dump Analyzer</h3>
+                    <p>Deadlocks, lock contention, blocked I/O, and CPU loops — explained in plain language.</p>
+                    <span class="card-link">Open product</span>
+                </a>
+                <a class="home-product-card" href="product.html#memory">
+                    <span class="ai-badge"><i class="fas fa-microchip" aria-hidden="true"></i> AI</span>
+                    <i class="fas fa-memory" aria-hidden="true"></i>
+                    <h3>Memory Analyzer</h3>
+                    <p>Heap snapshots, retained sets, and GC guidance so leaks are easier to prove and fix.</p>
+                    <span class="card-link">Open product</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Embedded Contact Modal (hidden by default) -->
-    <div id="contact-modal" class="contact-modal-embedded" style="display:none;">
-        <div class="contact-modal-backdrop"></div>
-        <div class="contact-modal-dialog">
-            <button class="contact-modal-close" aria-label="Close contact">×</button>
-            <div class="contact-modal-body">
-                <div class="container">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <div class="contact-wrapper">
-                        <div class="contact-info">
-                            <h3>Contact Information</h3>
-                            <div class="info-item">
-                                <i class="fas fa-envelope"></i>
-                                <div>
-                                    <h4>Email</h4>
-                                    <p>info@nexusai.com</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-phone"></i>
-                                <div>
-                                    <h4>Phone</h4>
-                                    <p>080 79603321</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <h4>Address</h4>
-                                    <p>+09, Skyline Estate<br>Horamavu, Bangalore</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <h4>Support Hours</h4>
-                                    <p>24/7 Available</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <form class="contact-form">
-                            <div class="form-group">
-                                <input type="text" name="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Company Email" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="company" placeholder="Company Name">
-                            </div>
-                            <div class="form-group">
-                                <select required>
-                                    <option value="">Select a Service</option>
-                                    <option value="thread-dump">AI Thread Dump Analyzer</option>
-                                    <option value="devops">DevOps Services</option>
-                                    <option value="sre">SRE Consulting</option>
-                                    <option value="support">Production Support</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn">Send Message</button>
-                        </form>
-                    </div>
+    <section class="home-services">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">Services</h2>
+                    <p class="lead">Delivery work around the products. Details, approach, and case studies are on the services page.</p>
                 </div>
+                <a class="text-link" href="services.html">How we deliver</a>
+            </div>
+            <div class="home-service-row">
+                <a href="services.html#devops">DevOps</a>
+                <a href="services.html#ai">AI &amp; automation</a>
+                <a href="services.html#sre">Site reliability</a>
+                <a href="services.html#support">Production support</a>
+                <a href="hardware.html">Hardware &amp; procurement</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Footer -->
+    <section class="home-cta" aria-labelledby="cta-heading">
+        <div class="container home-cta-inner">
+            <div>
+                <h2 id="cta-heading">Need a demo or an engineer?</h2>
+                <p>We reply within one business day. Or call the Bengaluru office now.</p>
+            </div>
+            <div class="home-cta-actions">
+                <a href="contact.html" class="cta-button">Request a demo</a>
+                <a href="mailto:info@nexusai.com" class="cta-button secondary">info@nexusai.com</a>
+                <a href="tel:+918079603321" class="ghost-link">080 7960 3321</a>
+            </div>
+        </div>
+    </section>
+    </main>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>NexusAI</h4>
-                    <p>Enterprise DevOps, AI & SRE solutions for production excellence</p>
-                    <div class="footer-badges">
-                        <span class="badge">ISO 27001</span>
-                        <span class="badge">SOC 2 Type II</span>
-                        <span class="badge">GDPR Compliant</span>
-                    </div>
+                    <p>AI analyzers and delivery for production Java, DevOps, and SRE teams. Bengaluru.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Products</h4>
+                    <h4>Go to</h4>
                     <ul>
-                        <li><a href="product.html">AI Thread Dump Analyzer</a></li>
-                        <li><a href="#services">DevOps Services</a></li>
-                        <li><a href="#services">SRE Solutions</a></li>
-                        <li><a href="#platforms">Mobile Apps</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="hardware.html">Hardware &amp; procurement</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Company</h4>
+                    <h4>Talk</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">API Reference</a></li>
+                        <li><a href="mailto:info@nexusai.com">info@nexusai.com</a></li>
+                        <li><a href="tel:+918079603321">080 7960 3321</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Security</a></li>
-                        <li><a href="#">Compliance</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 NexusAI. All rights reserved. | Trusted by 50+ Fortune 500 Companies</p>
+                <p>&copy; <span class="year">2026</span> NexusAI. Bengaluru.</p>
             </div>
         </div>
     </footer>
 
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -98,7 +98,7 @@
         const successEl = document.getElementById('form-success');
         const sendBtn = document.getElementById('send-btn');
         const waBtn = document.getElementById('wa-btn');
-        const FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@nexusai.com';
+        const FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@gridspanai.com';
 
         function setError(msg) {
             if (successEl) successEl.hidden = true;
@@ -123,7 +123,7 @@
 
         function waHref(fields) {
             const text = [
-                'Hello NexusAI,',
+                'Hello GridspanAI,',
                 fields.name ? 'Name: ' + fields.name : '',
                 fields.company ? 'Company: ' + fields.company : '',
                 fields.service ? 'Need: ' + fields.service : '',
@@ -173,7 +173,7 @@
                         company: fields.company || '—',
                         service: fields.service,
                         message: fields.message,
-                        _subject: 'NexusAI enquiry — ' + fields.service
+                        _subject: 'GridspanAI enquiry — ' + fields.service
                     })
                 });
                 const payload = await res.json().catch(() => ({}));
@@ -297,7 +297,7 @@
             themeToggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
         }
     }
-    const savedTheme = localStorage.getItem('nexusai_theme');
+    const savedTheme = localStorage.getItem('gridspan_theme') || localStorage.getItem('nexusai_theme');
     if (savedTheme) applyTheme(savedTheme);
     else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
     else applyTheme('light');
@@ -306,7 +306,7 @@
         themeToggle.addEventListener('click', () => {
             const next = document.body.classList.contains('dark') ? 'light' : 'dark';
             applyTheme(next);
-            localStorage.setItem('nexusai_theme', next);
+            localStorage.setItem('gridspan_theme', next);
         });
     }
 })();
